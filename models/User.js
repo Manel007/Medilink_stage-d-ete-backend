@@ -61,6 +61,10 @@ const userSchema = new mongoose.Schema({
     default:false
 
 } , 
+mfaCode: {
+    type: String,
+    
+},
     });
 
 

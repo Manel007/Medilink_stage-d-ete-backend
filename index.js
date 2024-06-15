@@ -12,6 +12,7 @@ import mime from "mime";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
+import MFAroute from "./routes/MFA-verification.js";
 import appointementRoutes  from"./routes/appointment.js"
 import { registerUser } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
@@ -63,7 +64,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/appointement", appointementRoutes);
-
+app.use("/api",MFAroute);
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3005;
 mongoose
