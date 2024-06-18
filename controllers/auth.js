@@ -36,7 +36,14 @@ export const registerUser = async (req, res) => {
       gouvernorat, // Pour le médecin
       dossierMedical, // Pour le patient
       nomLaboratoire,
-      municipalites
+      municipalites, 
+       PhoneNumber,
+       Gender,
+      Height,
+      Weight,
+      BloodType,
+      Address,
+      Birthdate
   } = req.body;
 
 
@@ -75,8 +82,18 @@ if (!password) {
           // Si le rôle est patient, créer un nouveau patient avec l'ID de l'utilisateur
           newRecord = await Patient.create({
               IdPatient: newUser._id,
+              firstname,
+              lastname,
+              email,
+              password,
               dossierMedical,
-            
+              PhoneNumber,
+              Gender,
+             Height,
+             Weight,
+             BloodType,
+             Address,
+             Birthdate
           });
       }else if(role === 'laboratoire'){
         newRecord = await Laboratoire.create({

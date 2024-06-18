@@ -4,7 +4,7 @@ import UserModel from '../models/User.js';
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import bcrypt from "bcryptjs";
-
+import{getPatientByUserId} from "../controllers/patientController.js"
 const router = express.Router();
 // Fonction pour générer un code MFA à 6 chiffres
 const generateMfaCode = () => {
@@ -120,5 +120,6 @@ router.post('/login-with-mfa', async (req, res) => {
     }
   
 });
+router.get('/patients/:id',getPatientByUserId);
 
 export default router;

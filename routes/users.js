@@ -13,14 +13,8 @@ import {
   addLabAppoint,
   addMedAppoint,
   fetch,
-
-
-
- 
-
 } from "../controllers/users.js";
 import { verifyToken } from "../middleware/auth.js";
-
 const router = express.Router();
 
 /* READ */
@@ -33,6 +27,10 @@ router.get("/:id/laboratoires", getLabsUser,verifyToken);
 router.get("/:id", getUser,verifyToken);
 router.get("/:id/friends", verifyToken, getUserFriends);
 router.get('/:id/medecin',verifyToken, getMedecinUser);
+
+
+
+
 
 router.patch("/laboratoires/:ID/appointment", addLabAppoint);
 router.patch("/medecin/:ID/appointment", addMedAppoint);

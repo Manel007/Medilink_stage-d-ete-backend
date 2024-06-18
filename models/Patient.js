@@ -7,6 +7,26 @@ const patientSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    firstname: {
+        type: String,
+    require:true,
+        min: 2,
+        max: 50,
+    },
+    lastname: {
+        type: String,
+        min: 2,
+        max: 50,
+    },
+    email: {
+        type: String,
+        max: 50,
+        unique: true,
+    },
+    password: {
+        type: String,
+        min: 5,
+    },
     dossierMedical: [{
         IdDossier:{
             type: mongoose.Schema.Types.ObjectId,
@@ -40,8 +60,30 @@ const patientSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Medecin',
             required: true
+        },   }],
+        PhoneNumber:{
+            type: Number,
+        },
+        Gender:{
+            type:String,
+        },
+        Height:{
+            type:String,
+        },
+        Weight:{
+            type:String,
+        },
+        BloodType:{
+            type:String,
+        },
+        Address: {
+            type: String,
+        },
+        Birthdate:{
+         type: Date,
         }
-    }]
+
+ 
 });
 
 const Patient = mongoose.model('Patient', patientSchema);
