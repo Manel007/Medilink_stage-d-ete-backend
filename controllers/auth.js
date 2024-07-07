@@ -43,7 +43,13 @@ export const registerUser = async (req, res) => {
       Weight,
       BloodType,
       Address,
-      Birthdate
+      Birthdate, 
+     residence_type, // Pour le patient
+      work_type, // Pour le patient
+      marital_status, // Pour le patient
+      cigsPerDay, // Pour le patient
+      Pregnancies, // Pour le patient
+      smoking_status // Pour le patient
   } = req.body;
 
 
@@ -93,7 +99,13 @@ if (!password) {
              Weight,
              BloodType,
              Address,
-             Birthdate
+             Birthdate, 
+             residence_type,
+             work_type,
+             marital_status,
+             cigsPerDay,
+             Pregnancies,
+             smoking_status
           });
       }else if(role === 'laboratoire'){
         newRecord = await Laboratoire.create({

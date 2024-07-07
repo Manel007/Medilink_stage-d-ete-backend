@@ -12,6 +12,7 @@ import {
   fetchPatients,
   addLabAppoint,
   addMedAppoint,
+  searchByName,
   fetch,
 } from "../controllers/users.js";
 import { verifyToken } from "../middleware/auth.js";
@@ -29,7 +30,8 @@ router.get("/:id/friends", verifyToken, getUserFriends);
 router.get('/:id/medecin',verifyToken, getMedecinUser);
 
 
-
+/* lil search */
+router.get('/search/:name', searchByName);
 
 
 router.patch("/laboratoires/:ID/appointment", addLabAppoint);

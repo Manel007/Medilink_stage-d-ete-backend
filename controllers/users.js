@@ -2,6 +2,7 @@ import Patient from "../models/Patient.js";
 import Medecin from "../models/Medecin.js";
 import User from "../models/User.js";
 import Laboratoire from "../models/Laboratoire.js";
+import Pharmacie from "../models/Pharmacie.js";
 
 /* READ */
 export const getUser = async (req, res) => {
@@ -262,6 +263,68 @@ console.log(userId)
       res.status(500).json({ message: 'Error adding rendez-vous' });
   }
 };
+
+
+
+
+
+
+export const searchByName = async (req, res) => {
+  try {
+    const { name } = req.params;
+    const regex = new RegExp(name, 'i'); // case-insensitive search
+
+    // Search for patients
+    const patients = await Patient.find({
+      $or: [{ firstname: regex }, { lastname: regex }]
+    });
+
+    // If patients found, return them
+    if (patients.length > 0) {
+      return res.status(200).json(patients);
+    }
+
+    // Search for doctors
+    const doctors = await Medecin.find({
+      $or: [{ Name: regex }, { SurName: regex }]
+    });
+
+    // If doctors found, return them
+    if (doctors.length > 0) {
+      return res.status(200).json(doctors);
+    }
+
+    // Search for laboratories
+    const laboratories = await Laboratoire.find({ nomLaboratoire: regex });
+
+    // If laboratories found, return them
+    if (laboratories.length > 0) {
+      return res.status(200).json(laboratories);
+    }
+
+    // Search for pharmacies
+    const pharmacies = await Pharmacie.find({ nom: regex });
+
+    // If pharmacies found, return them
+    if (pharmacies.length > 0) {
+      return res.status(200).json(pharmacies);
+    }
+
+    // If no matches found
+    res.status(404).json({ message: 'No matches found' });
+
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
+
+
+
+
+
+
 // Assuming you have imported your Patient model
 
 export const fetchPatients = async (req, res) => {

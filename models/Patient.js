@@ -81,9 +81,25 @@ const patientSchema = new mongoose.Schema({
         },
         Birthdate:{
          type: Date,
-        }
-
- 
+        },
+        residence_type:{
+            type: String,
+        },
+        work_type :{
+            type: String,
+        },
+        marital_status:{
+            type: String,
+        },
+        Pregnancies:{
+            type: Number,
+        },
+        smoking_status:{
+            type: String,
+        },
+        cigsPerDay:{
+            type: Number,
+        },
 });
 
 const Patient = mongoose.model('Patient', patientSchema);
