@@ -18,6 +18,9 @@ const consultationSchema = new mongoose.Schema({
     NomMedecin: {
         type: String
     },
+    Speciality: {
+        type: String
+    },
     description:{
         type: String,
         required:true

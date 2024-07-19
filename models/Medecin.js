@@ -9,6 +9,7 @@ const medecinSchema = new mongoose.Schema({
     },
     Name:String,
     SurName:String,
+    Disponibilite:String,
     specialite: String,
     numeroSerie: String,
     adresse: String,

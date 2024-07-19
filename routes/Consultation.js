@@ -48,4 +48,40 @@ router.get('/consultations/patient/:patientId', async (req, res) => {
         res.status(500).send('Failed to fetch consultations');
     }
 });
+
+
+
+// Route to get doctors by specialty
+router.get('/medecins/specialite/:specialite', async (req, res) => {
+    const { specialite } = req.params;
+
+    try {
+        const medecins = await Medecin.find({ specialite });
+        res.status(200).send(medecins);
+    } catch (error) {
+        console.error('Error fetching doctors by specialty:', error);
+        res.status(500).send('Failed to fetch doctors by specialty');
+    }
+});
+// Endpoint pour rechercher des médecins en fonction des critères
+router.get('/search', async (req, res) => {
+    try {
+      const { specialite, adresse, gouvernorat, disponibilite,Name } = req.query;
+      const query = {};
+  
+      if (specialite) query.specialite = { $regex: specialite, $options: 'i' }; // recherche insensible à la casse
+      if (adresse) query.adresse = { $regex: adresse, $options: 'i' }; // recherche insensible à la casse
+      if (gouvernorat) query.gouvernorat = { $regex: gouvernorat, $options: 'i' }; // recherche insensible à la casse
+      if (Name) query.Name = { $regex: Name, $options: 'i' }; // recherche insensible à la casse
+
+      if (disponibilite) query.disponibilite = disponibilite === 'Available';
+  
+      const medecins = await Medecin.find(query);
+      res.json(medecins);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+
 export default router;
