@@ -12,6 +12,7 @@ import mime from "mime";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
+import dossiermed from "./routes/dossierMedical.js"
 import ConsultationRoutes from "./routes/Consultation.js"
 import MFAroute from "./routes/MFA-verification.js";
 import appointementRoutes  from"./routes/appointment.js"
@@ -67,6 +68,7 @@ app.use("/api/posts", postRoutes);
 app.use("/api/appointement", appointementRoutes);
 app.use("/api",MFAroute);
 app.use("/api/schedule",ConsultationRoutes);
+app.use("/api/dm",dossiermed);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3005;

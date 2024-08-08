@@ -4,7 +4,7 @@ import User from "../models/User.js";
 import Laboratoire from "../models/Laboratoire.js";
 import Pharmacie from "../models/Pharmacie.js";
 
-/* READ */
+
 export const getUser = async (req, res) => {
   try {
     const { id } = req.params;

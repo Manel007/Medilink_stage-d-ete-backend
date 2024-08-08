@@ -27,21 +27,9 @@ const patientSchema = new mongoose.Schema({
         type: String,
         min: 5,
     },
-    dossierMedical: [{
-        IdDossier:{
-            type: mongoose.Schema.Types.ObjectId,
-        },
-        analyses: {
-            IdAnalyse:String,
-            data: Buffer,
-            contentType: String, 
-            default: {}
-        },
-        medicaments: {
-            type: String,
-            default: {}
-        }
-    }],
+  /*  dossierMedical:  
+    {type: String},*/
+  dossierMedical: [{ type: String }],  // Now an array of strings
     RendezVous: [{
         IdRendezVous: {
             type: mongoose.Schema.Types.ObjectId,
